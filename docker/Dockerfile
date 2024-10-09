@@ -57,12 +57,20 @@ ENV SERVER_HOME /home/developer/virgo
 
 #GET GEPPETTO SOURCES
 USER root
-RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto && cd org.geppetto && git checkout tags/v0.2.6-alpha 
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend && cd org.geppetto.frontend && git checkout tags/v0.2.6-alpha 
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.2.6-alpha 
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.2.6-alpha 
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/0.2.6-alpha
+# RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto && cd org.geppetto && git checkout tags/v0.2.6-alpha 
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend && cd org.geppetto.frontend && git checkout tags/v0.2.6-alpha 
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.2.6-alpha 
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.2.6-alpha 
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/0.2.6-alpha
+# RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
+
+RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc
 RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
 RUN chmod -R 777 workspace
 
