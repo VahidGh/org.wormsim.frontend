@@ -55,6 +55,7 @@ RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/o
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend && cd org.geppetto.frontend && git checkout tags/v0.4.2-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.4.2-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.4.2-alpha 
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model && cd org.geppetto.model && git checkout tags/v0.4.2-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.4.2-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/v0.4.2-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
