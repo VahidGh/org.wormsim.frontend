@@ -1,4 +1,4 @@
-FROM java:7
+FROM bitnami/java
 MAINTAINER Stephen Larson "slarson@openworm.org"
 
 RUN apt-get update && apt-get install -y sudo
@@ -19,12 +19,22 @@ WORKDIR /home/developer
 
 #VIRGO INSTALL
 USER root
-RUN apt-get update && apt-get install -y curl bsdtar maven nodejs npm 
-RUN npm install -g bower && ln -s /usr/bin/nodejs /usr/bin/node
+# RUN apt-get update && apt-get install -y curl bsdtar maven nodejs npm 
+RUN apt-get install -y curl 
+RUN apt-get install -y maven 
+RUN apt-get install -y nodejs 
+RUN apt-get install -y npm 
+# RUN npm install -g bower && ln -s /usr/bin/nodejs /usr/bin/node
+RUN npm install -g bower
+RUN apt-get install -y zip
+RUN apt-get install -y python-is-python3
 USER developer
 
 RUN mkdir -p /home/developer/virgo
-RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' | bsdtar --strip-components 1 -C /home/developer/virgo -xzf -
+# RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' | bsdtar --strip-components 1 -C /home/developer/virgo -xzf -
+RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' -o virgo-tomcat-server-3.6.4.RELEASE.zip
+RUN unzip -q virgo-tomcat-server-3.6.4.RELEASE.zip -d /home/developer/
+RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
 RUN chmod u+x /home/developer/virgo/bin/*.sh
 ENV SERVER_HOME /home/developer/virgo
 #VOLUME /home/developer/virgo
@@ -37,7 +47,7 @@ RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend &
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.2.6-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.2.6-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/0.2.6-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
 RUN chmod -R 777 workspace
 
