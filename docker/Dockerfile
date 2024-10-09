@@ -37,6 +37,7 @@ RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend &
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.2.6-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.2.6-alpha 
 RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.neuroml && git checkout tags/v0.2.6-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
 RUN chmod -R 777 workspace
 
