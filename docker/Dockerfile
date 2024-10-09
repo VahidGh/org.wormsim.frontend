@@ -73,7 +73,7 @@ RUN chmod -R 777 workspace
 USER developer
 
 # Due to issues with log4j v1.2.15 temporarily substitude this with 1.2.16 to check if it works
-RUN sed -i -e 's/1.2.15/1.2.16/g' workspace/org.geppetto.core/pom.xml
+# RUN sed -i -e 's/1.2.15/1.2.16/g' workspace/org.geppetto.core/pom.xml
 
 COPY bower.json workspace/org.geppetto.frontend/src/main/webapp/js/
 RUN cd workspace/org.geppetto.frontend/src/main/webapp/js && bower install
@@ -83,7 +83,8 @@ RUN cd workspace/org.wormsim.frontend/utilities/ && sudo python applyWormSimThem
 
 COPY geppetto.plan workspace/org.geppetto
 
-RUN cd workspace/org.geppetto && mvn install
+# RUN cd workspace/org.geppetto && mvn install
+RUN cd workspace/org.geppetto && mvn -e clean install
 #END GET GEPPETTO SOURCES
 
 RUN mkdir -p geppetto/
