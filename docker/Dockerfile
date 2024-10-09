@@ -30,7 +30,7 @@ RUN apt-get install -y zip
 RUN apt-get install -y python-is-python3
 USER developer
 
-RUN mkdir -p /home/developer/virgo
+# RUN mkdir -p /home/developer/virgo
 # RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' | bsdtar --strip-components 1 -C /home/developer/virgo -xzf -
 RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' -o /home/developer/virgo-tomcat-server-3.6.4.RELEASE.zip
 RUN unzip -q virgo-tomcat-server-3.6.4.RELEASE.zip -d /home/developer/
@@ -39,7 +39,7 @@ RUN unzip -q virgo-tomcat-server-3.6.4.RELEASE.zip -d /home/developer/
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN ls -l /home/developer/
 
-RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
+RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
 
 # Check error
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
