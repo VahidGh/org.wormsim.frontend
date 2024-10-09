@@ -34,22 +34,8 @@ USER developer
 # RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' | bsdtar --strip-components 1 -C /home/developer/virgo -xzf -
 RUN curl -L 'http://www.eclipse.org/downloads/download.php?file=/virgo/release/VP/3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE.zip&mirror_id=580&r=1' -o /home/developer/virgo-tomcat-server-3.6.4.RELEASE.zip
 RUN unzip -q virgo-tomcat-server-3.6.4.RELEASE.zip -d /home/developer/
-
-# Check build error
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN ls -l /home/developer/
-
 RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
-
-# Check error
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN ls -l /home/developer/virgo/
-
 RUN rm -rf /home/developer/*.zip
-# Check error
-ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
-RUN ls -l /home/developer/
-
 RUN chmod u+x /home/developer/virgo/bin/*.sh
 ENV SERVER_HOME /home/developer/virgo
 #VOLUME /home/developer/virgo
@@ -65,13 +51,22 @@ USER root
 # RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/0.2.6-alpha
 # RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
 
-RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml
-RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc
+RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto && cd org.geppetto && git checkout tags/v0.4.2-alpha 
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend && cd org.geppetto.frontend && git checkout tags/v0.4.2-alpha 
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core && cd org.geppetto.core && git checkout tags/v0.4.2-alpha 
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation && cd org.geppetto.simulation && git checkout tags/v0.4.2-alpha 
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml && cd org.geppetto.model.neuroml && git checkout tags/v0.4.2-alpha
+RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc && cd org.geppetto.model.swc && git checkout tags/v0.4.2-alpha
 RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
+
+# RUN mkdir -p workspace && cd workspace && git clone http://github.com/openworm/org.geppetto
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.frontend
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.core
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.simulation
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.neuroml
+# RUN cd workspace && git clone http://github.com/openworm/org.geppetto.model.swc
+# RUN cd workspace && git clone http://github.com/openworm/org.wormsim.frontend
+
 RUN chmod -R 777 workspace
 
 USER developer
