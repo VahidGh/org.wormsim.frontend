@@ -39,11 +39,16 @@ RUN unzip -q virgo-tomcat-server-3.6.4.RELEASE.zip -d /home/developer/
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN ls -l /home/developer/
 
-RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
+RUN mv /home/developer/virgo-tomcat-server-3.6.4.RELEASE/virgo-tomcat-server-3.6.4.RELEASE /home/developer/virgo
 
 # Check error
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN ls -l /home/developer/virgo/
+
+RUN rm -rf /home/developer/*.zip
+# Check error
+ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
+RUN ls -l /home/developer/
 
 RUN chmod u+x /home/developer/virgo/bin/*.sh
 ENV SERVER_HOME /home/developer/virgo
