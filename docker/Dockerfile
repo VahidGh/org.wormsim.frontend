@@ -84,7 +84,7 @@ RUN cd workspace/org.wormsim.frontend/utilities/ && sudo python applyWormSimThem
 COPY geppetto.plan workspace/org.geppetto
 
 # RUN cd workspace/org.geppetto && mvn install
-RUN cd workspace/org.geppetto && mvn -e clean install -DskipTests
+RUN cd workspace/org.geppetto && mvn -e clean install -DskipTests -Dmaven.test.skip
 #END GET GEPPETTO SOURCES
 
 RUN mkdir -p geppetto/
